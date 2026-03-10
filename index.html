@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday</title>
+
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  font-family:sans-serif;
+  text-align:center;
+  background:linear-gradient(#ffecd2,#fcb69f);
+}
+
+h1{
+  margin-top:40vh;
+  font-size:60px;
+}
+
+.confetti{
+  position:fixed;
+  width:10px;
+  height:10px;
+  top:-10px;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎉 お誕生日おめでとう！ 🎉</h1>
+
+<script>
+
+function createConfetti(){
+
+  const colors = [
+    "#ff595e",
+    "#ffca3a",
+    "#8ac926",
+    "#1982c4",
+    "#6a4c93"
+  ];
+
+  const confetti = document.createElement("div");
+  confetti.classList.add("confetti");
+
+  confetti.style.left = Math.random()*100+"vw";
+  confetti.style.background = colors[Math.floor(Math.random()*colors.length)];
+  confetti.style.animationDuration = (Math.random()*3+2)+"s";
+
+  document.body.appendChild(confetti);
+
+  setTimeout(()=>{
+    confetti.remove();
+  },5000);
+}
+
+setInterval(createConfetti,80);
+
+</script>
+
+</body>
+</html>
