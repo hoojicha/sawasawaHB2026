@@ -2,71 +2,45 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday</title>
-
-<style>
-body{
-  margin:0;
-  overflow:hidden;
-  font-family:sans-serif;
-  text-align:center;
-  background:linear-gradient(#ffecd2,#fcb69f);
-}
-
-h1{
-  margin-top:40vh;
-  font-size:60px;
-}
-
-.confetti{
-  position:fixed;
-  width:10px;
-  height:10px;
-  top:-10px;
-  animation:fall linear forwards;
-}
-
-@keyframes fall{
-  to{
-    transform:translateY(110vh) rotate(720deg);
-  }
-}
-</style>
+<title>happy birthday</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>お誕生日おめでとう！</h1>
-<h1>by　ヴァロ部</h1>
-<script>
+<header class="topbar">
 
-function createConfetti(){
+<div class="status">
+Sawasawa Happy Birthday Lv.25<br>
+ユーザーのステータスバー(仮)
+</div>
 
-  const colors = [
-    "#ff595e",
-    "#ffca3a",
-    "#8ac926",
-    "#1982c4",
-    "#6a4c93"
-  ];
+<a class="message" href="message.html">
+メッセ
+</a>
 
-  const confetti = document.createElement("div");
-  confetti.classList.add("confetti");
+</header>
 
-  confetti.style.left = Math.random()*100+"vw";
-  confetti.style.background = colors[Math.floor(Math.random()*colors.length)];
-  confetti.style.animationDuration = (Math.random()*3+2)+"s";
 
-  document.body.appendChild(confetti);
+<main>
 
-  setTimeout(()=>{
-    confetti.remove();
-  },5000);
-}
+<div class="monster-area">
+モンスターの絵
+</div>
 
-setInterval(createConfetti,80);
+</main>
 
-</script>
+
+<nav class="nav">
+
+<a href="mypage.html">マイページ</a>
+<a href="quest.html">クエスト</a>
+<a href="monster.html">モンスター</a>
+<a href="friend.html">フレンド</a>
+<a href="other.html">その他</a>
+
+</nav>
+
 
 </body>
 </html>
