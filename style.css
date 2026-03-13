@@ -1,69 +1,259 @@
 body{
 margin:0;
-background:#e5e5e5;
 font-family:sans-serif;
-height:100vh;
-display:flex;
-flex-direction:column;
+
+/* 背景 */
+
+background: linear-gradient(#aee2ff,#ffffff);
+animation: skyChange 20s ease-in-out infinite alternate;
 }
 
-.topbar{
-display:flex;
-justify-content:space-between;
-padding:10px;
-}
+
+
+/* ステータス */
 
 .status{
-border:2px solid red;
-padding:10px;
+
+position:absolute;
+top:20px;
+left:20px;
+
 background:white;
+
+border:4px solid #444;
+border-radius:12px;
+
+padding:12px 16px;
+
+box-shadow:4px 4px 0 #999;
+
+line-height:1.4;
+
 }
 
-.message{
-border:2px solid red;
-border-radius:50%;
-width:80px;
-height:80px;
+.status-title{
+
+font-size:12px;
+color:#ff6699;
+
+}
+
+.status-name{
+
+font-size:18px;
+font-weight:bold;
+
+}
+
+.status-info{
+
+font-size:12px;
+
+}
+
+
+
+/* メッセージ */
+
+.message-icon{
+
+position:absolute;
+top:20px;
+right:20px;
+
+}
+
+.message-icon img{
+
+width:60px;
+
+}
+
+
+
+/* メイン画面 */
+
+.game-area{
+
+max-width:900px;
+margin:auto;
+
+padding-top:150px;
+
+text-align:center;
+
+}
+
+
+
+/* カエル */
+
+.frog-area{
+
+position:relative;
+
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:flex-end;
+
+gap:40px;
+
+}
+
+.frog{
+
+width:140px;
+
+filter: drop-shadow(0 8px 6px rgba(0,0,0,0.25));
+
+}
+
+
+
+/* 音符 */
+
+.note{
+
+position:absolute;
+
+width:40px;
+
+transform-origin: top center;
+
+animation:swing 2s infinite ease-in-out;
+
+filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+
+}
+
+.note1{
+
+left:35%;
+top:-40px;
+
+}
+
+.note2{
+
+left:50%;
+top:-70px;
+
+animation-delay:0.5s;
+
+}
+
+.note3{
+
+left:65%;
+top:-30px;
+
+animation-delay:1s;
+
+}
+
+
+
+/* 音符揺れ */
+
+@keyframes swing{
+
+0%{transform:rotate(-10deg);}
+50%{transform:rotate(10deg);}
+100%{transform:rotate(-10deg);}
+
+}
+
+
+
+/* 背景変化 */
+
+@keyframes skyChange{
+
+0%{
+background: linear-gradient(#aee2ff,#ffffff);
+}
+
+50%{
+background: linear-gradient(#ffd6e0,#ffffff);
+}
+
+100%{
+background: linear-gradient(#fff1a8,#ffffff);
+}
+
+}
+
+
+
+/* 下メニュー */
+
+.bottom-menu{
+
+position:fixed;
+bottom:0;
+left:0;
+
+width:100%;
+
 background:white;
-text-decoration:none;
-color:black;
-}
 
-main{
-flex:1;
-display:flex;
-justify-content:center;
-align-items:center;
-}
+border-top:3px solid #444;
 
-.monster-area{
-border:2px solid red;
-width:70%;
-height:300px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-background:white;
-}
-
-.nav{
 display:flex;
 justify-content:space-around;
-padding:10px;
+
+padding:8px 0;
+
+box-shadow:0 -3px 8px rgba(0,0,0,0.15);
+
 }
 
-.nav a{
-border:2px solid red;
-width:80px;
-height:60px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:white;
+.menu-item{
+
+text-align:center;
 text-decoration:none;
 color:black;
+
+font-size:12px;
+
+}
+
+.menu-item img{
+
+width:40px;
+display:block;
+margin:auto;
+
+}
+
+.menu-item:active{
+
+transform:scale(0.9);
+
+}
+
+
+
+/* 隠し演出 */
+
+#birthday-bg{
+
+position:fixed;
+
+top:50%;
+left:50%;
+
+transform:translate(-50%,-50%);
+
+font-size:90px;
+font-weight:bold;
+
+color:rgba(255,100,100,0.15);
+
+opacity:0;
+
+transition:1s;
+
+pointer-events:none;
+
 }
