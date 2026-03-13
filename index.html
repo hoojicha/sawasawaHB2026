@@ -2,45 +2,96 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>happy birthday</title>
+<title>Happy Birthday</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="topbar">
+<div id="birthday-bg">HAPPY BIRTHDAY</div>
 
+<!-- ステータス -->
 <div class="status">
-Sawasawa Happy Birthday Lv.25<br>
-ユーザーのステータスバー(仮)
+
+<div class="status-title">
+🎂 Birthday Hero
 </div>
 
-<a class="message" href="message.html">
-メッセ
+<div class="status-name">
+Sawasawa
+</div>
+
+<div class="status-info">
+Lv.25<br>
+TITLE：本日の主役
+</div>
+
+</div>
+
+
+<!-- メッセージ -->
+<a href="message.html" class="message-icon">
+<img src="img/icon/massage.png">
 </a>
 
-</header>
 
+<div class="game-area">
 
-<main>
+<div class="frog-area">
 
-<div class="monster-area">
-モンスターの絵
+<img src="img/monster/main1.png" class="frog">
+<img src="img/monster/main2.png" class="frog frog-secret" onclick="showBirthday()">
+<img src="img/monster/main3.png" class="frog">
+
+<img src="img/icon/music1.png" class="note note1">
+<img src="img/icon/music2.png" class="note note2">
+<img src="img/icon/music3.png" class="note note3">
+
 </div>
 
-</main>
+</div>
 
 
-<nav class="nav">
+<!-- 下メニュー -->
 
-<a href="mypage.html">マイページ</a>
-<a href="quest.html">クエスト</a>
-<a href="monster.html">モンスター</a>
-<a href="friend.html">フレンド</a>
-<a href="other.html">その他</a>
+<div class="bottom-menu">
 
-</nav>
+<a href="mypage.html" class="menu-item">
+<img src="img/icon/mypage.png">
+<p>マイページ</p>
+</a>
 
+<a href="quest.html" class="menu-item">
+<img src="img/icon/quest.png">
+<p>クエスト</p>
+</a>
+
+<a href="monster.html" class="menu-item">
+<img src="img/icon/monster.png">
+<p>モンスター</p>
+</a>
+
+<a href="friend.html" class="menu-item">
+<img src="img/icon/friends.png">
+<p>フレンド</p>
+</a>
+
+<a href="other.html" class="menu-item">
+<img src="img/icon/others.png">
+<p>その他</p>
+</a>
+
+</div>
+
+<script>
+  function showBirthday(){
+
+    const bg = document.getElementById("birthday-bg");
+  
+    bg.style.opacity = 1;
+
+  }  
+</script>
 
 </body>
 </html>
