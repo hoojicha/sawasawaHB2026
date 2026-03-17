@@ -3,146 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <title>Happy Birthday</title>
+
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        overflow: hidden;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-align: center;
-    }
+body {
+    margin: 0;
+    height: 100vh;
+    background: #0b1f17;
+    color: #00ff9c;
+    font-family: 'Arial Black', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 
-    h1 {
-        font-size: 3em;
-        animation: glow 2s ease-in-out infinite alternate;
-    }
+/* ネオン背景 */
+body::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        135deg,
+        transparent,
+        transparent 50px,
+        rgba(0,255,156,0.05) 50px,
+        rgba(0,255,156,0.05) 100px
+    );
+    animation: bgmove 12s linear infinite;
+}
 
-    @keyframes glow {
-        from {
-            text-shadow: 0 0 10px #fff, 0 0 20px #ff4da6;
-        }
-        to {
-            text-shadow: 0 0 20px #fff, 0 0 40px #ff1a75;
-        }
-    }
+@keyframes bgmove {
+    from { transform: translate(0,0); }
+    to { transform: translate(-200px,-200px); }
+}
 
-    .container {
-        z-index: 2;
-    }
+.container {
+    text-align: center;
+    z-index: 2;
+}
 
-    .subtitle {
-        margin-top: 20px;
-        font-size: 1.5em;
-        opacity: 0.9;
-    }
+/* メイン */
+.title {
+    font-size: 3em;
+    text-shadow: 0 0 10px #00ff9c, 0 0 20px #00ff9c;
+}
 
-    /* 花火風エフェクト */
-    .firework {
-        position: absolute;
-        width: 5px;
-        height: 5px;
-        background: white;
-        border-radius: 50%;
-        animation: explode 1.5s ease-out infinite;
-    }
+/* ACE風 */
+.rank-text {
+    font-size: 5em;
+    margin-top: 20px;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: 0.3s;
+}
 
-    @keyframes explode {
-        0% {
-            transform: scale(0);
-            opacity: 1;
-        }
-        100% {
-            transform: scale(15);
-            opacity: 0;
-        }
-    }
+/* 表示時 */
+.show {
+    opacity: 1;
+    transform: scale(1);
+}
 
-    /* キラキラ */
-    .sparkle {
-        position: absolute;
-        width: 3px;
-        height: 3px;
-        background: white;
-        border-radius: 50%;
-        animation: sparkle 3s linear infinite;
-    }
+/* CLUTCH色変化 */
+.clutch {
+    color: #00e1ff;
+    text-shadow: 0 0 15px #00e1ff;
+}
 
-    @keyframes sparkle {
-        from {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateY(-100vh);
-            opacity: 0;
-        }
-    }
+/* ボタン */
+button {
+    margin-top: 30px;
+    padding: 12px 25px;
+    border: 2px solid #00ff9c;
+    background: transparent;
+    color: #00ff9c;
+    cursor: pointer;
+}
 
-    button {
-        margin-top: 30px;
-        padding: 10px 20px;
-        font-size: 1em;
-        border: none;
-        border-radius: 20px;
-        background: white;
-        color: #ff4da6;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+button:hover {
+    background: #00ff9c;
+    color: #0b1f17;
+}
 
-    button:hover {
-        background: #ff4da6;
-        color: white;
+/* パーティクル */
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #00ff9c;
+    border-radius: 50%;
+    animation: explode 1s forwards;
+}
+
+@keyframes explode {
+    to {
+        transform: translate(var(--x), var(--y));
+        opacity: 0;
     }
+}
+
+/* ランク表示 */
+.rank {
+    margin-top: 15px;
+    font-size: 1.2em;
+    opacity: 0.8;
+}
 </style>
 </head>
 
 <body>
 
 <div class="container">
-    <h1>🎉 お誕生日おめでとう！🎉</h1>
-    <div class="subtitle">by ヴァロ部</div>
-    <button onclick="moreFireworks()">もっと祝う</button>
+    <div class="title">HAPPY BIRTHDAY</div>
+    <div>by ヴァロ部</div>
+
+    <div id="effect" class="rank-text">ACE</div>
+
+    <div class="rank">PLATINUM PLAYER</div>
+
+    <button onclick="triggerEffect()">もっと祝う</button>
 </div>
 
 <script>
-    // 花火生成
-    function createFirework() {
-        const fw = document.createElement("div");
-        fw.className = "firework";
-        fw.style.left = Math.random() * window.innerWidth + "px";
-        fw.style.top = Math.random() * window.innerHeight + "px";
-        fw.style.background = `hsl(${Math.random()*360},100%,70%)`;
-        document.body.appendChild(fw);
+let toggle = true;
 
-        setTimeout(() => fw.remove(), 1500);
+function triggerEffect() {
+    const effect = document.getElementById("effect");
+
+    // ACE ⇄ CLUTCH切り替え
+    if (toggle) {
+        effect.textContent = "ACE";
+        effect.classList.remove("clutch");
+    } else {
+        effect.textContent = "CLUTCH";
+        effect.classList.add("clutch");
     }
 
-    setInterval(createFirework, 300);
+    effect.classList.add("show");
 
-    function moreFireworks() {
-        for (let i = 0; i < 20; i++) {
-            setTimeout(createFirework, i * 50);
-        }
+    setTimeout(() => {
+        effect.classList.remove("show");
+    }, 1000);
+
+    toggle = !toggle;
+
+    burst();
+}
+
+// 爆発演出（撃ち合い強者感）
+function burst() {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    for (let i = 0; i < 80; i++) {
+        const p = document.createElement("div");
+        p.className = "particle";
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = Math.random() * 200;
+
+        p.style.left = centerX + "px";
+        p.style.top = centerY + "px";
+
+        p.style.setProperty("--x", Math.cos(angle) * distance + "px");
+        p.style.setProperty("--y", Math.sin(angle) * distance + "px");
+
+        document.body.appendChild(p);
+
+        setTimeout(() => p.remove(), 1000);
     }
-
-    // キラキラ生成
-    function createSparkle() {
-        const sp = document.createElement("div");
-        sp.className = "sparkle";
-        sp.style.left = Math.random() * window.innerWidth + "px";
-        sp.style.top = window.innerHeight + "px";
-        document.body.appendChild(sp);
-
-        setTimeout(() => sp.remove(), 3000);
-    }
-
-    setInterval(createSparkle, 100);
+}
 </script>
 
 </body>
