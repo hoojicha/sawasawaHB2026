@@ -29,26 +29,6 @@ body {
     height: 100vh;
 }
 
-/* フレンド欄 */
-.sidebar {
-    width: 260px;
-    background: #111823;
-    border-right: 2px solid #ff4655;
-    padding: 15px;
-}
-
-.sidebar h2 {
-    color: #ff4655;
-    font-size: 14px;
-}
-
-.friend {
-    padding: 8px;
-    margin: 5px 0;
-    background: #1a2430;
-    border-left: 3px solid #00f0ff;
-}
-
 /* メイン */
 .main {
     flex: 1;
@@ -58,7 +38,37 @@ body {
     align-items: center;
 }
 
-/* 背景シルエット */
+/* フレンド欄（右） */
+.sidebar {
+    width: 260px;
+    background: #111823;
+    border-left: 2px solid #ff4655;
+    padding: 15px;
+}
+
+.sidebar h2 {
+    color: #ff4655;
+    font-size: 14px;
+}
+
+/* 自分（強調） */
+.me {
+    padding: 10px;
+    margin: 8px 0;
+    background: #1f2d3d;
+    border-left: 4px solid #ff4655;
+    font-weight: bold;
+}
+
+/* フレンド */
+.friend {
+    padding: 8px;
+    margin: 5px 0;
+    background: #1a2430;
+    border-left: 3px solid #00f0ff;
+}
+
+/* エージェント背景 */
 .agent-bg {
     position: absolute;
     width: 500px;
@@ -90,24 +100,6 @@ body {
     color: #aaa;
 }
 
-/* ランク */
-.rank {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-.rank-badge {
-    width: 70px;
-    height: 70px;
-    border: 2px solid #a6a6ff;
-    clip-path: polygon(50% 0%, 90% 30%, 75% 90%, 25% 90%, 10% 30%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #a6a6ff;
-}
-
 /* メッセージ */
 .message {
     margin-top: 40px;
@@ -115,7 +107,7 @@ body {
     font-size: 22px;
 }
 
-/* READYボタン */
+/* ボタン */
 .ready {
     margin-top: 30px;
     text-align: center;
@@ -134,7 +126,7 @@ body {
     background: #ff6b77;
 }
 
-/* ACE表示 */
+/* ACE */
 .effect {
     text-align: center;
     font-size: 60px;
@@ -160,16 +152,6 @@ body {
 
 <div class="wrapper">
 
-    <!-- フレンド -->
-    <div class="sidebar">
-        <h2>PARTY (FULL)</h2>
-        <div class="friend">duelist神</div>
-        <div class="friend">flash職人</div>
-        <div class="friend">IGLっぽい人</div>
-        <div class="friend">bot frag担当</div>
-        <div class="friend">さわさわ</div>
-    </div>
-
     <!-- メイン -->
     <div class="main">
 
@@ -178,11 +160,6 @@ body {
         <div class="card">
             <div class="name">さわさわ</div>
             <div class="level">LEVEL 309</div>
-
-            <div class="rank">
-                <div class="rank-badge">P1</div>
-                <div style="font-size:12px;">PLATINUM 1</div>
-            </div>
 
             <div class="message">
                 🎉 HAPPY BIRTHDAY 🎉<br>
@@ -197,6 +174,19 @@ body {
         </div>
 
     </div>
+
+    <!-- フレンド欄（右） -->
+    <div class="sidebar">
+        <h2>PARTY (FULL)</h2>
+
+        <div class="me">さわさわ</div>
+
+        <div class="friend">entry神</div>
+        <div class="friend">flashマスター</div>
+        <div class="friend">IGL担当</div>
+        <div class="friend">後入り職人</div>
+    </div>
+
 </div>
 
 <script>
